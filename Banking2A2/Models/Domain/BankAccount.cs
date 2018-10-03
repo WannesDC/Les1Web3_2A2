@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Banking2A2.Models.Domain
 {
-	class BankAccount
+	public class BankAccount
 	{
 		//Ctrl+K+S to surround with region!
 		//private string _accountnumber;
+
 		#region field
+
 		private decimal _balance;
-		#endregion
+		private ICollection<Transaction> _transactions;
+
+		#endregion field
 
 		//public const decimal WithdrawCost = 0.10M;
 		//public static readonly decimal _withdrawCost = 0.10M;
+
 		#region properties
+
 		public decimal Balance
 		{
 			get
@@ -31,16 +36,24 @@ namespace Banking2A2.Models.Domain
 		}
 
 		public string AccountNumber { get; private set; }
-		#endregion
+
+		public IEnumerable<Transaction> Transactions
+		{
+			get
+			{
+				return _transactions;
+			}
+		}
+		#endregion properties
 
 		#region methods
 
-		
 		public void Deposit(decimal amount)
 		{
-			if(amount < 0)
+			if (amount < 0)
 				throw new ArgumentException("Deposits cannot be negative.");
 			Balance += amount;
+			_transactions.Add(new Transaction(amount, TransactionType.Deposit));
 		}
 
 		public void Withdraw(decimal amount)
@@ -50,20 +63,31 @@ namespace Banking2A2.Models.Domain
 			//Ctrl+D: Copy line below
 
 			Balance -= amount;
+
+			_transactions.Add(new Transaction(amount, TransactionType.Withdraw));
+
 		}
-		#endregion
+
+
+
+		#endregion methods
 
 		#region Constructors
+
 		public BankAccount(string accountNumber)
 		{
 			AccountNumber = accountNumber;
+			_transactions = new List<Transaction>();
 		}
 
-		public BankAccount(string accountNumber, decimal balance):this(accountNumber)
+		public BankAccount(string accountNumber, decimal balance ) : this(accountNumber)
 		{
 			Balance = balance;
 			//_withdrawCost = 0.10M;
+			
+			
 		}
-		#endregion
+
+		#endregion Constructors
 	}
 }

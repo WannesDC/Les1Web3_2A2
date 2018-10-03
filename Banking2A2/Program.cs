@@ -1,5 +1,6 @@
 ﻿using Banking2A2.Models.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace Banking2A2
 {
@@ -23,7 +24,14 @@ namespace Banking2A2
 			Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
 			myBA.Withdraw(200);
 			Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+			myBA.Withdraw(100);
+			Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
 
+			IEnumerable<Transaction> transactions = myBA.Transactions;
+			foreach (var item in transactions)
+			{
+				Console.WriteLine($"{item.DateOfTransaction} -- {item.Amount} -- {item.TransactionType}");
+			}
 			Console.ReadKey();
 		}
 	}
