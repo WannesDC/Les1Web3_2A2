@@ -68,7 +68,27 @@ namespace Banking2A2.Models.Domain
 
 		}
 
+		public override string ToString()
+		{
+			return $"{AccountNumber} -- {Balance}";
+		}
 
+		public override bool Equals(object obj)
+		{
+			BankAccount ba = obj as BankAccount;
+			// BankAccount ba = (BankAccount)obj; --> werpt mogelijks een exception
+			if(ba == null)
+			{
+				return false;
+			}
+
+			return AccountNumber == ba.AccountNumber;
+		}
+
+		public override int GetHashCode()
+		{
+			return AccountNumber.GetHashCode();
+		}
 
 		#endregion methods
 

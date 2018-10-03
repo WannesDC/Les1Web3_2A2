@@ -21,11 +21,11 @@ namespace Banking2A2
 
 
 			myBA.Deposit(1000);
-			Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+			Console.WriteLine(myBA);
 			myBA.Withdraw(200);
-			Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+			Console.WriteLine(myBA);
 			myBA.Withdraw(100);
-			Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+			Console.WriteLine(myBA);
 
 			var transactions = myBA.Transactions;
 			foreach (var item in transactions)
