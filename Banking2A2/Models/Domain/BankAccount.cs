@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Banking2A2.Models.Domain
 {
-	public class BankAccount
+	public class BankAccount : IBankAccount
 	{
 		//Ctrl+K+S to surround with region!
 		//private string _accountnumber;
