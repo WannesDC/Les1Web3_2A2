@@ -48,7 +48,7 @@ namespace Banking2A2.Models.Domain
 
 		#region methods
 
-		public void Deposit(decimal amount)
+		public virtual void Deposit(decimal amount)
 		{
 			if (amount < 0)
 				throw new ArgumentException("Deposits cannot be negative.");
@@ -56,7 +56,7 @@ namespace Banking2A2.Models.Domain
 			_transactions.Add(new Transaction(amount, TransactionType.Deposit));
 		}
 
-		public void Withdraw(decimal amount)
+		public virtual void Withdraw(decimal amount)
 		{
 			if (amount < 0)
 				throw new ArgumentException("Withdrawals cannot be negative.");
